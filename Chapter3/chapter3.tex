@@ -2,7 +2,7 @@
 %*******************************************************************************
 %****************************** Third Chapter **********************************
 %*******************************************************************************
-\chapter{Research questions}
+\chapter{Research questions and hypotheses}
 
 % **************************** Define Graphics Path **************************
 \ifpdf
@@ -11,28 +11,43 @@
     \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
 \fi
 
-\begin{itemize}
-	\item How to proper model user behaviour in sequential decision making? In particular, how to design and learn the behavioural model when the user is interacting with a physical environment? (\textbf{RQ1})
+In this Chapter we present the research questions and hypotheses that motivate the research presented in this thesis.
+
+\section{Research questions}
+
+
+	\noindent\textbf{How to proper model user behaviour in sequential decision making? In particular, how to design and learn the behavioural model when the user is interacting with a physical environment? (RQ1)}
 	
-	Motivated by the willingness to better understand users preferences in different contexts as well as to understand the influence of the presentation or consumption order of items we have to identify a suitable model that can learn the user preference from her action observations. As we discussed in the previous sections, typically users provides scarce feedback about the outcome of their action (i.e., if they liked or not to perform that action). Therefore, there is the need to identify a user behaviour learning solution that can cope with scarce this type of incomplete preference data. So far, we have experimented with an approach that ``groups'' similar users together (clusters) users and then learns, by means of IRL, a generalised user behaviour model that is specific to the group.  
-	So far, we experimented with data that came from Location Based Social Networks (e.g., GPS traces of check-in actions). We will soon start to evaluate the proposed approach with sensor data coming from IoT devices.
+	Motivated by the willingness to better understand users preferences in different contexts as well as the influence of the presentation or consumption order of items we have to identify a suitable model that can learn the user preference from her action observations. As discussed in the previous section, typically the users' explicit feedback on the outcomes of their choices (e.g., if a consumed item is liked) is very sparse. So, leveraging the user's actions observations (implicit feedback) as a proxy of her preferences has been shown that help to determine items the user will like. When a user acts in a physical environment, like a city, it is meaningful to use the observations of her actions to identify what is relevant (preferred) to her. As opposite to traditional information systems, where the observed user's actions are certain,% e.g., a user skips a specific song and not another. On the contrary, 
+	observations of user-space interactions %, where her actions are recorded by sensors, the information about the action is 
+	are inherently uncertain. 
+	In particular, observation data typically consist of location updates describing a user's movement and are recorded by sensors: all the data are affected by error measures. So, we may confound user locations and identify the wrong place visited by a user. Moreover, users acting in an open environment are not constrained (guided) by a fixed navigation scheme like the links on a web page and therefore may stuck moving forth and back the same places. This lead to have observations describing a suboptimal behaviour. Beside, we do not have at disposal a large number of user-space interaction data that is specific to an individual because users are not willing to share too much about their personal (and especially location) data \cite{location_privacy:Poikela2014}.
+	Therefore, there is the need to identify a user behaviour learning solution that can cope with scarce user's observed behavioural data. %So far, we have experimented with an approach that ``groups'' similar users together (clusters) users and then learns, by means of IRL, a generalised user behaviour model that is specific to the group.  
+	This question is addressed in Chapter \ref{cha:behaviour_learning} and \ref{cha:wondervalley}. \newline
 	
-	\item How can we use the learnt user behaviour model to generate more effective recommendations? (\textbf{RQ2})
+	\noindent\textbf{How can we use the learnt user behaviour model to generate more effective recommendations (RQ2)?}
 	
 	The next motivation of this study is that most of the current RS approaches do not distinguish between user behaviour learning and the recommendation  generation process. Current RS techniques (e.g., nearest neighbour) recommend items by identifying a user's choice pattern that is directly used to identify the set items the user is going to consume next. These are the items used for recommendation and often these recommendations are evaluated as too obvious for the target user.
-	Therefore, we have to identify recommendation strategies that can be used in order to increase the user satisfaction rather than suggesting what the user is predicted to consume next. Furthermore, an aspect that have to be investigated is the presentation of the recommendations. In particular, in the case of Internet of Things scenarios we have to understand how to better address recommendation notifications to users.
-	For instance, a user can be annoyed if he is notified every time a sensor identifies her presence close to items that are supposed to be relevant for her. Therefore, defining procedures to address this type of problems when dealing with IoT sensors is an important aspect of our research. 
+	Therefore, we have to identify recommendation strategies that can be used in order to increase the user satisfaction rather than suggesting what the user is predicted to consume next.
+	We focus on how to design such strategies so that they can be leveraged in combination with a learnt user behavioural model to generate recommendations that are of interest for a user. This problem is tackled in Chapter \ref{cha:recommendation}. \newline
 	
-	\item Quali sono i fattori che rendono una raccomandazione interessante per un utente ? (\textbf{RQ3})
+	\noindent \textbf{Which are the factors that makes a recommendation interesting for a user? (RQ3)} 
 	
-	\item Which are the factors that make a recommendation interesting for a user? (\textbf{RQ4})
-
-	\item It is possible to transfer the users' behavioural model learnt in a source domain to a target domain (\textbf{RQ5})?
+	Connecting with the previous research question, this one puts the light on understanding what is making a user choosing an item. 
+	We conjecture that there are two levels that influence the user decisions, namely a user level and an item level.
+	In particular, at the user level we think that influencing factors are the user intent, i.e., what is the goal that drives the user during her decision making process, or the user knowledge level about the domain in which she is making choices, i.e., is the user able to assess, i.e., evaluate, the items in the set of available options. Beside, at item level the specific item characteristic are here seen as the influencing factors steering the interest for an item.
+	Therefore, we think that by identifying the users' intent and the set of item features in the specific domain in which the user decision making process take place is crucial to gain the insight to better design Recommender Systems that are capable to generate interesting recommendations to the user. This ap \newline
 	
-	\item How do compare the recommendations generated by exploiting a source domain user behavioural model with those recommendation generated by harnessing the behaviour of target users (\textbf{RQ6})?
+	\noindent \textbf{How do compare the recommendations generated for a target domain, by exploiting a source domain user behavioural model, with those recommendation generated by harnessing the behaviour of target domain users? (RQ4)} 
 	
+	Recommender System researchers attacked the problem of Cold-start, i.e., few or no information about users' preferences or consumed items, by proposing Cross-domain Recommender systems. A Cross-Domain Recommender tries to build an encompassing user preference model by mining users' preferences about items specific to a domain, e.g., books, in order to exploit this user model in other domains, e.g., movies.
+	We argue that by exploiting observations of user behavioural data collected in both online and offline environments would help to build an generalized behaviour model that can fill the gap between the two types of environments and the related user behaviour.
+	For instance, online collected behavioural data about visitors preferred attractions in Florence can be used to learn a generalized user behaviour model to be employed for two objectives. At first, a new generalized behaviour model can be learnt for a new city (Rome). Then, POI-visit recommendations can be generated for users that are visiting Rome.
+	Thus we have to understand if there is a common set of features that can be leveraged to: (1) describe more than one physical space; (2) learn a generalized user behaviour model in one physical space and transfer the acquired knowledge to another (new) physical space. Moreover, we are interested in observing how this transfer of knowledge affect the recommendations.\newline
 	
-\end{itemize}
+	%\noindent \textbf{How to evaluate the effectiveness of an interactive recommendation model that support a user in identifying the next place of interest to visit next while she is interacting with the physical space? RQ5)} 
+	%Furthermore, an aspect that have to be investigated is the presentation of the recommendations. In particular, in the case of Internet of Things scenarios we have to understand how to better address recommendation notifications to users.
+	%For instance, a user can be annoyed if he is notified every time a sensor identifies her presence close to items that are supposed to be relevant for her. Therefore, defining procedures to address this type of problems when dealing with IoT sensors is an important aspect of our research. Answering this question is addressed in Chapter \ref{cha:recommendation}. 
 
 \begin{comment}
 

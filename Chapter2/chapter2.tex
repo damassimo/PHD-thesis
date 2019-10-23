@@ -4,7 +4,7 @@
 %*******************************************************************************
 
 \chapter{Related work}
-
+\label{cha:related work}
 \ifpdf
 \graphicspath{{Chapter2/Figs/Raster/}{Chapter2/Figs/PDF/}{Chapter2/Figs/}}
 \else
@@ -19,23 +19,27 @@
 \label{sec:human_behaviour_modelling}
 In this thesis, with human behaviour we refer to the course of actions an individual or a group of individuals take in order to complete a task, like deciding which book to read under the beach umbrella or which restaurant to reserve for a family lunch. Therefore, we discuss here the highly complex cognitive process, characterizing Human-decision making, that leads to the decision to perform an action, e.g., choosing which book to read among several possible books (the full set of choices).
 
-Decision-making is a study subject of many disciplines, like economy, psychology, philosophy and computer science. A decision maker is a human or more generally an intelligent agent, that has a reasoning mechanism that enables it to make choices. Typically, it is assumed that the agent is rational, i.e., the agent is self-interested and acts in order to maximise the incentives 
-%%FR incentives or gain, reward. Incentivo e' una cosa particolare.
-that it can obtain from its choices \cite{decisionmaking:Kahneman,rational:utility:def}. That said, in order to maximise its objective (the collection of incentives), the agent must know all the possible choices and the related incentives. 
-%%FR In generale in DM si dice che le choices hanno degli outcome, in relazione ai possibili world states.
-A way to model the human (agent) 
+Decision-making is a study subject of many disciplines, like economy, psychology, philosophy and computer science. A decision maker is a human or more generally an intelligent agent, that has a reasoning mechanism that enables it to make choices. 
+In this thesis, we focus on humans who use information systems, specifically, Recommender Systems, and we simply refer to them as users.
+Typically, it is assumed that a user is rational, i.e., she is self-interested and acts in order to maximise the gain 
+%%-FR incentives or gain, reward. Incentivo e' una cosa particolare.
+that it can obtain from its choices \cite{decisionmaking:Kahneman,rational:utility:def}.
+Generally, in Decision-making it is assumed that a choice is tight to one (or more) outcome in relation to the world states.
+That said, in order to maximise its objective (the collection of gains), the user must know all the possible choices and the related gain. 
+%%-FR In generale in DM si dice che le choices hanno degli outcome, in relazione ai possibili world states.
+A way to model the user  
 %%FR ora parli di uomini, prima parlavi di agenti. E' fatto di proposito?
-behaviour is to define a measure that quantifies the consequences (how many incentives)
-%%FR "how many incentives"??? Sono numerabili?
-of the future agent's choices. 
-%%FR non sono le azioni che sono future, penso, ma l'outcome.
-That said, the utility tells us how much the agent is or is foreseen to be ``satisfied''. 
-In order to compute the utility of the agent's choices a mathematical model is needed; it can be defined by an expert (e.g., a behavioural scientist) or inferred from the observations of an agent's (or group of agents) actions.
+behaviour is to define a measure that quantifies the consequences (how much gain)
+%%-FR "how many incentives"??? Sono numerabili?
+of the future agent's outcome. 
+%%-FR non sono le azioni che sono future, penso, ma l'outcome.
+That said, the utility tells us how much the user is or is foreseen to be ``satisfied''. 
+In order to compute the utility of the user's choices a mathematical model is needed; it can be defined by an expert (e.g., a behavioural scientist) or inferred from the observations of an user's (or group of users) actions.
 
-An expert that formulates the mathematical model that captures the underlying reasoning mechanism of an agent, acts according to this three steps: knowledge extraction; model formulation; model evaluation. The process of extracting the domain knowledge can be achieved by interviewing decision-makers in the domain under investigation. Then, it follows the mathematical formulation of the reasoning mechanism. Finally, the designed decision model can be assessed by observing the deviation of the decisions performed by humans and those that are the outputs of the model.
+An expert that formulates the mathematical model that captures the underlying reasoning mechanism of a user, acts according to this three steps: knowledge extraction; model formulation; model evaluation. The process of extracting the domain knowledge can be achieved by interviewing decision-makers in the domain under investigation. Then, it follows the mathematical formulation of the reasoning mechanism. Finally, the designed decision model can be assessed by observing the deviation of the decisions performed by users and those that are the outputs of the model.
 
-The second approach to decision-making modelling grounds on observational data of user (agent) choices (actions).
-%%FR ora parli di "user". Sarebbe bene usare solo un termine in maniera uniforme e spiegare la prima volta
+The second approach to decision-making modelling grounds on observational data of user choices (actions).
+%%-FR ora parli di "user". Sarebbe bene usare solo un termine in maniera uniforme e spiegare la prima volta
 %% che lo usi a cosa ti riferisci.
 Learning from data can exploit techniques developed by researchers and practitioners in the field of Machine Learning (ML). A ML model takes as input observational (behaviour) data and by leveraging statistics
 %%FR Che statistics? Tecniche, principi .... 
@@ -53,25 +57,25 @@ we should consider as the vector components, features such as the travel dates a
 \newline
 
 
-\noindent\textbf{Supervised learning} \cite{Russell:2009:AIM:1671238} models takes as input past user's choice observation data in order to approximate the user's decision making process. 
-%%FR Io non parlerei di "process" perche' fa pensare ai passi di soluzione. Qui, in realtà stai solo dicendo che con questa tecnica si puo' modellare/prevedere la scelta, a partire da alcune informazioni che caratterizzano il problema decisionale.
+\noindent\textbf{Supervised learning} \cite{Russell:2009:AIM:1671238} models takes as input past user's choice observation data in order to model and predict future user's choices.
+%%-FR Io non parlerei di "process" perche' fa pensare ai passi di soluzione. Qui, in realtà stai solo dicendo che con questa tecnica si puo' modellare/prevedere la scelta, a partire da alcune informazioni che caratterizzano il problema decisionale.
 Approximating the choices of a user is possible due to the presence of labels, that annotates the observed choice actions, in the training data. For instance, in the case of the previous hotel booking example, the training data can consist in the amount of money the user want to spend, check-in and check-out dates and the booked hotel. \newline
 %ML models like decsion trees, NN adn SVM have been succesfully applied to human decision making.
 
 \noindent\textbf{Unsupervised learning} \cite{unsupervised:Hinton1999} aims at discovering more about the data rather than approximating the user behaviour. Such models are employed when data cannot be labelled and there is the need to have a deeper insight about the underlying distribution or patterns in the data. For instance by applying clustering, we can identify specific groups of hotels' guests just by having their demographic information. Then, these groups can be further studied in order to gain more insight about their decision making process. \newline
 
 
-\noindent\textbf{Reinforcement learning} \cite{sutton:1998} is the ML technique that frames DM closer to how a behavioural scientist or economist see real decision-making. In Reinforcement learning an individual 
-%%FR ora lo chiami "individual".
-(agent) is self-interested and acts with the intent to optimize an objective. 
-%%FR objective function?
-The environment in which the agent acts is unknown to it. The agent's choices are made in such a way that the cumulative reward it can obtain from its actions is maximised. The reward can be intended as the utility (or satisfaction) the agent gets by acting in a specific way. In a similar way to expert-driven behaviour modelling the reward an agent collect by its interaction with the environment is defined by an expert. By employing an RL agent it is possible to map states describing the decision environment to actions, 
-%%FR non capisco cosa dici sopra. States e action sono cose distinte, un'action determina una transizione di stato.
-learning in this way the policy, 
-%%FR non e' chiaro come "learning in this way ..."
-or even better an optimal policy, that tells the agent how it should act in order to maximise its cumulative reward given its current state.
-When observations of human decisions are available then a policy (i.e., the human behaviour) can be learnt from the data by using Inverse Reinforcement Learning. 
-%%FR devi enfatizzare la differenza con quanto detto sopra. Non e' chiara.
+\noindent\textbf{Reinforcement learning} \cite{sutton:1998} is the ML technique that frames DM closer to how a behavioural scientist or economist see real decision-making. In Reinforcement learning a user 
+%%-FR ora lo chiami "individual".
+(agent) is self-interested and acts with the intent to optimize an objective function. 
+%%-FR objective function?
+The environment in which the user acts is unknown to it. The user's choices are made in such a way that the cumulative reward she can obtain from its actions is maximised. The reward can be intended as the utility (or satisfaction) the user earns by acting in a specific way. In a similar way to expert-driven behaviour modelling the reward an agent collect by its interaction with the environment is defined by an expert. By employing an RL agent it is possible to map states, describing the environment conditions at the user decision time, to actions, the actual user's decision that leads to a next state.
+%%-FR non capisco cosa dici sopra. States e action sono cose distinte, un'action determina una transizione di stato.
+By computing how much the agent increases its cumulative reward by performing specific actions (decisions) we learn its policy, 
+%%-FR non e' chiaro come "learning in this way ..."
+or even better an optimal policy. The optimal policy tell the agent how it should act in order to maximise its cumulative reward given its current state.
+When observations of human decisions are available, e.g., the POIs-visit itinerary of a user, then a policy (i.e., the human behaviour) can be learnt from the data by using Inverse Reinforcement Learning. 
+%%-FR devi enfatizzare la differenza con quanto detto sopra. Non e' chiara.
 
 Applications of ML models in which human behaviour is the learning objective are, for instance: learning the health status of citizens from food purchases \cite{health:aiello:2019}; learning and predicting individual's lifetime expectation and health leveraging smokers behavioural data \cite{smokers:darden:2017}; learning planning strategies of herders \cite{ermon:2015}; learning user preferences about items (e.g., movies) by observing online users' behaviour in order to generate recommendations about items they will like to consume in the future \cite{RSdef:2015}.
 %Human behaviour modelling and learning is a fundamental part of many application is computer science, like in social networks or recommender systems. 
@@ -82,10 +86,11 @@ In this thesis we focus on modelling user behaviour for applications to Recommen
 Recommender Systems (RSs) are software tools that aim at easing people 
 decision making by delivering personalised suggestions about items to 
 consume or actions to perform \cite{RSdef:2015}. 
-Nowadays, RSs are key elements 
-%%FR "elements" e' generico. Usa un termine piu' specifico.
-placed at the core business of many companies in a variety of sectors, like tourism, e-commerce, video and music streaming.\footnote{Examples of companies that successfully employed RSs are: in the tourism domain, Booking.com, Expedia and Tripadvisor; in E-commerce, Amazon and Idealo; in the video and music industry, YouTube and Spotify.}
-%%FR perche' usare una footnote?
+Nowadays, RSs are the drivers of 
+%%-FR "elements" e' generico. Usa un termine piu' specifico.
+%placed at the core
+the business of many companies in a variety of sectors, like tourism, e-commerce, video and music streaming. Examples of companies that successfully employed RSs are: in the tourism domain, Booking.com, Expedia and Tripadvisor; in E-commerce, Amazon and Idealo; in the video and music industry, YouTube and Spotify.
+%%-FR perche' usare una footnote?
 The success of RSs in business applications is due to its dual function to serve both the company strategy and the end user's need as well. As reported in \cite{RSdef:2015} examples of these functions are, from the company perspective: increase the quantity of items sold; increase the user satisfaction; increase the fidelity of the user. Instead, the end user is supported to: find good items; find relevant items; help other users to find good/ relevant items.  
 
 A RS in order to identify items that are suitable for a user needs to estimate the utility of the items in the system dataset. The typical assumption in RS is that the user wants to maximise the utility associated with an item. This is similar to what is presented in Section \ref{sec:human_behaviour_modelling}. In order to perform the computation of this utility a RS needs to process observation data about the user (past) behaviour, e.g., which are the items purchased by the user or what are the features that characterizes the purchased items. So, these observations may capture at different extent the information about the user actions (e.g., clicks or purchases) and the item information (e.g., description).
@@ -105,8 +110,8 @@ the user has consumed or liked before. \newline
 
 \noindent\textbf{Knowledge-Based} recommendations \cite{kb:RSdef} are generated by relying on rules that establish how certain item features satisfy the user needs and preferences. From the human behaviour modelling perspective such systems are expert-driven. The system designer infer from the domain knowledge a mathematical function that computes the similarity of the user needs and the possible recommendations. \newline
 
-\noindent\textbf{Collaborative Filtering} \cite{cf:koren} identifies items to recommend to the target user by exploiting only information pertaining to her actions (consumed items) and those of similar users. 
-%%FR Ad essere precisi sono item che l'utente ha valutato
+\noindent\textbf{Collaborative Filtering} \cite{cf:koren} identifies items to recommend to the target user by exploiting only information pertaining to the set of items she evaluated (her actions) and those of similar users. 
+%%-FR Ad essere precisi sono item che l'utente ha valutato
 Users are considered similar if they acts similarly, e.g., they rate higher a specific item and lower another item. Collaborative Filtering is based on two types of user behaviour data: explicit feedback data, like ratings and likes, or implicit feedback data, like clicks on a webpage.  While explicit feedback is usually in a binary scale (i.e. like or dislike) or a likert-scale (star ratings), implicit feedback \cite{Hu2008,Pan2008,gurabnov:2016} recommendation techniques exploit observations of users' actions performed on the items. For instance, a RS, in order to suggest an internet video, could exploit data about browsing behaviours while watching videos, e.g., the fact that certain videos are skipped or partially seen.\newline
 %When more approaches are combined together to overcome limitations of single solutions, we speak about hybrid approaches \cite{hybrid}.
 
@@ -123,9 +128,10 @@ In this thesis in order to learn better users' action selection policies and pre
 \subsection{Sequential recommendations}
 \label{sec:sequentialrecommendation}
 Most of the approaches exploited in RSs implicitly assume that the consumption of 
-goods and their evaluations are independent from the order in which the items have been accessed. 
-%%FR consumed? Perche' ora usi il termine "accessed", sembra che questa distinzione abbia senso per quello che vuoi dire.
-For instance, content-based and collaborative based techniques do not exploit the users's item evaluation order to build their predictive models.
+goods and their evaluations are independent from the order in which the items have been consumed.
+%accessed. 
+%%-FR consumed? Perche' ora usi il termine "accessed", sembra che questa distinzione abbia senso per quello che vuoi dire.
+For instance, content-based and collaborative based techniques do not exploit the user's item evaluation order to build their predictive models.
 In some cases, rather than predicting a set of items that could be relevant for a user, the goal is to identify items that could be consumed immediately after a specific item. For instance, during a visit in the city of Bolzano (Italy) what can be recommended to a tourist that visited, at first, Walther square and, then, an exhibition in Museion, that are two very close but different venues?
 In order to address this type of questions, the sequential aspect of item consumption 
 has been studied in the context of personalisation by proposing pattern-discovery approaches in different domains: web \cite{mobasher:2002}, music \cite{hariri2012, jannach2017}, travel \cite{zhang:seq:travel:2014,flikr_tourism_RS:muntean:2015,palumbo:2017} and cultural heritage \cite{hashemi:2017}. 
@@ -140,16 +146,138 @@ In this thesis, in order to not suggest uninteresting items to users and to deal
 \section{Inverse Reinforcement Learning}
 
 To fulfil the need of learning an explainable user behavioural model from user behaviour data, imitation learning is a viable solution. It is typically addressed by solving Markov Decision Problems (MDP) via Inverse Reinforcement Learning (IRL)\cite{ng:2000}.
+
+\subsubsection{Environment and Decision Maker representation}
+
 A MDP is defined by a tuple $(S,A,T,r,\gamma)$. $S$ is a finite set of states (e.g., visit to a location). $A$ is a finite set of actions (e.g., moving to a location). $T$ is a finite set of probabilities $T(s'| s, a)$, to make a transition from state $s$ to $s'$ when action $a$ is performed.
 The function $r: S \rightarrow \mathbb{R}$ models the reward a user obtains from acting in a certain way (being in a state). This function is supposed to be {\it unknown} and must be learnt.
+Finally, $\gamma \in [0,1]$ is used to discount future rewards with respect to immediate ones. 
+
+Given a MDP, our goal is to find a policy $\pi^* : S \rightarrow A$ that maximises the cumulative reward that the decision maker obtains by acting according to $\pi^*$ (optimal policy). 
+The value of taking a specific action $a$ in state $s$ under the policy $\pi$, is computed as :
+
+$$Q_{\pi}(s,a)=\mathbf{E}^{s,a,\pi}[\sum_{k=0}^{\infty} \gamma^k r(s_k)]$$
+
+i.e., it is the expected discounted cumulative reward obtained from $a$ in state $s$ and then following the policy $\pi$.
+
+%\begin{equation}
+%\label{eq:bellman} 
+%Q_{\pi}(s,a) = \sum_{s'}T(s'|s,a)r(s')+\gamma \max_{a'}{Q_{\pi}(s',a')}
+%\end{equation}
+
+The optimal policy $\pi^*$ dictates to a user in state $s$ to perform the action that maximizes $Q_{\pi^*}$. So, in order to compute $Q_{\pi^*}$ we rewrite the previous formula as:
+
+$$Q_{\pi^*}(s,a) = \sum_{s'}T(s'|s,a)\left[r(s)+\gamma \max_{a'}{Q_{\pi^*}(s',a')}\right]$$
+
+%%-FR sei sicuro di questa formula? Il Q tra parentesi non e' relativo a pi^*? Non e' la formula di Bellman?
 
 
 Given a demonstrated behaviour (e.g., user actions sequences), IRL models solve the target MDP by computing the reward function that makes the behaviour induced by the optimal policy for that reward (the learning objective) close to the demonstrated behaviour.
+
 Despite the fact that the reward is learnt from behaviour observation, the induced policy may not uniquely identified. It means that an IRL problem has many solutions. In order to overcome this problem several algorithmic strategies has been proven to identify a solution that justifies the observed behaviour. In \cite{ng:2000} the authors suggest to introduce a margin to a linear programming formulation of the IRL problem, such that the difference between the (learnt) reward obtained from a policy and the reward of other policies is maximised. In \cite{maxentirl} the reward function is sought by matching state features in the observation data. Maximum-entropy is used to identify actions probabilities that lead to a reward that supports the observed actions.
 In \cite{vro:litt:2011} the identification of a solution that supports the observations is identified by combining maximum likelihood estimation with a gradient method.
 %The reward is typically computed by a function that maps the state of an agent, i.e., a vector which elements are features representing, e.g., its decision context or the characteristic of the consumed item, to real values.
 %%FR Mi domando se poi tu non debba spiegare un po' meglio gli algoirtmi che hai usato. Lo fai qui o nella sezione in cui descrivi le tue tecniche?
 
+\subsubsection{Learning}
+IRL algorithms take as input a model of the environment, the MDP, and the observed behaviour of a user (or any autonomous agent) in the form of demonstrations, in our case the state-action trajectories $\zeta$.
+For instance, the trajectory $\zeta_u$ user $u$ which is a temporally ordered list of state-action pairs (user-space interactions). 
+%%FR In un MDP si parla di sequenze di stati non di stati-azione. Hai davvero bisogno di parlare di stato-azione. Noi abbiamo sempre inteso che lo stato descrive anche l'azione, ovvero se un utente e' in un POI vuol dire che voleva visitare questo POI. Non abbiamo casi in cui un utente voleva visitare il POI a e si trova invece al POI b. Puoi lasciare stato-azione ma se non serve crea solo confusione.
+For instance, $\zeta_{u_1} = ((s_{10},a_{3}), (s_5,a_8), (s_{15}, a_e))$ represents a user $u_1$ trajectory starting from state $s_{10}$, moving to $s_5$ by performing action $a_3$ 
+and ending to $s_{15}$ by acting according to $a_8$. The last action $a_e$ is a dummy action that indicates the end of the trajectory. With $Z$ we represent the set of all the observed users' trajectories. 
+trajectories in $Z$,
+%%FR Le traiettorie di stato o di stato-azione?
+and return the inferred user's reward function. In IRL the underlying assumption is that a user is a rational decision maker who seeks to optimize the reward associated to her actions. Due to this, the agent is typically referred as ``expert''.
+
+Generally the state space $S$ is represented by a state feature function $\Phi:S \rightarrow \mathbb{R}$ that assigns to each feature a real value.
+
+
+In order to infer the user's reward from her observations there is the need to identify a solution, i.e., a reward function, that makes the observed behaviour optimal. 
+IRL algorithms can reconstruct the reward function $r$ and the optimal action-selection policy $\pi^*$ of a user $u$ from the set of her observed trajectories. We assume (as in \cite{ng:2000}) that $r$ is a linear function, $r(s) = \theta^T\phi(s)$, of the state $s$ feature vector $\phi(s)$ 
+%%FR perche' ora la funzione che produce le features e' phi minuscolo e prima era Phi maiuscolo?
+and the user utility vector $\theta$, which models the unknown user preference for the state features. IRL algorithms derive the user's action-selection policy from the learned reward function $r$ by assuming that users act in order to maximise the reward.
+
+Researchers in the field of IRL showed that the reward estimation problem is ill-posed because there is an infinite number of solutions, e.g., a reward function $r=c$, where $c$ is a constant, is an example of such problem.
+%%FR Non si capisce cosa vuoi dire. Che se la reale funzione di reward e' una costante allora qualunque funzione costante e' anche una soluzione? Spiega meglio.
+Therefore, the challenge in IRL is to seek for a solution that is optimal, the best among the set of all the solutions. 
+%%FR Cosa vuol dire "the best"? Il problema che hai descritto sopra e' che non esiste UNA best, ma ne esistono MOLTE e che non si puo' dire qual'e' quella che l'utente sta realmente usando, assumendo che lui ne usa una sola.
+The main difference among the IRL algorithms proposed in the literature is in how the solution is computed, i.e., they differ in the optimality criterion.
+%%FR Quindi? Ne trovano una tra le tante soluzioni ottime? Vuoi dire questo? Sembra qusi che dici che hanno diversi criteri di ottimalita'. Questo e' fuorviante. Trovano diverse funzioni di reward che pure determinano la stessa policy ottima.
+
+To resolve the issue of identifying an optimal solution in \cite{ng:2000,irl:optimal_solution:2006} has been proposed to add a margin in order to maximize the difference between the reward derived from the optimal policies an the reward that is derived from the alternative policies.
+%
+In \cite{bayesianIRL} the authors tackle the problem of computing the reward from a Bayesian perspective. The proposed model, called Bayesian IRL, leverages the users' observations in order to infer the optimal reward. At first, it uses the observations as evidence to update the prior knowledge on the set of possible reward functions (solutions), which are assumed to be independently identically distributed. Then, Bayesian IRL estimates the reward using the posterior knowledge.
+%
+The authors of Maximum-Entropy IRL \cite{maxentirl} propose to seek for a reward function by matching state features in the observation data. Maximum-entropy is used to identify action (i.e., user-space interactions in our case) probabilities that lead to a reward that supports the observed data.
+%%FR Queste sono cose generali che andrebbero messe nello stato dell'arte su RL e IRL. Qui interrompono la discussione specifica alla tua applicazione.
+
+\subsection{Maximum Log-Likelihood IRL}
+In this thesis, in order to learn both the user's reward and her action-selection policy, we use a specific IRL algorithm called Maximum Log-likelihood (MLIRL) \cite{vro:litt:2011}. 
+MLIRL combines many positive features of other IRL models \cite{bayesianIRL,maxentirl,policymatchingirl}: it assumes a prior knowledge of the user preference vector to estimate an initial reward function that is then adjusted by looking for a maximum likelihood model that can justify observed trajectories; it optimizes user behaviour via a gradient method and assumes that each user randomizes the action selection process at the level of individual choices, i.e., by sampling choices (actions) from a Boltzmann distribution. 
+
+%In MLIRL it is assumed that experts randomize individual action choices. Choice actions are sought by the maximum likelihood solution via the gradient ascent approach. 
+The algorithm exploits the fact that a guessed $\theta$ induces a probability distribution over action choices and hence determine a likelihood for the observations in $Z$. Expected values (discounted) are computed via the following formula:
+% Add Bellman equation somewhere before
+
+%\begin{equation}
+$$Q_\theta(s,a) = \theta^T\phi(s)+\gamma\sum_{s'}T(s,a,s')\frac{\sum_a Q_\pi(s,a)e^{\beta Q_\pi(s,a)}}{\sum_{a'}e^{\beta Q_\pi(s,a')} }$$
+%\end{equation}
+
+MLIRL looks for $\theta = \arg\max_\theta L(Z|\theta)$ which is the maximum likelihood solution that is found via gradient ascent optimisation. 
+The log likelihood of the observed trajectories $Z$ is defined as:
+
+%\begin{equation}
+$$L(Z|\theta) = \prod_{i=0}^{|Z|} \prod_{s,a \in \zeta_i} \pi_\theta(s,a)$$
+%\end{equation}
+
+The term $\pi_\theta(s,a)$ in the previous equation represents the Boltzmann action-selection policy, which is defined as:
+
+$$\pi_\theta(s,a) = \frac{\sum_a Q_\pi(s,a)e^{\beta Q_\pi(s,a)}}{\sum_{a'}e^{\beta Q_\pi(s,a')}}$$
+
+The computation of $\theta$ via gradient ascent is performed for a fixed number of steps $M$. At each step the $\pi_\theta(s,a)$ is computed by solving via value iteration the MDP, using the estimated reward $r(s) = \theta^T \phi(s)$.
+
+MLIRL is known to converge to a solution in finite-horizon settings and is also known to produce a well-defined answer. The problem of the existence of multiple reward functions for which an observed trajectory is optimal in a given MDP, is solved by assigning high probabilities to observed behaviour and low probability to the unobserved. The general steps of the code are listed in algorithm \ref{code:mlirl}.
+
+\begin{algorithm}
+	\caption{Maximum Likelihood Inverse Reinforcement Learning}
+	\label{code:mlirl}
+	\begin{algorithmic}
+		\State \textbf{Input:} S, A, T, $\gamma$, $\phi$, $Z=\lbrace \zeta_1, \dots,  \zeta_N \rbrace$, M, $\lambda_t$ step size.
+		
+		\State $\theta \leftarrow$ Initialize with random values;
+		\For{t=1 to M} 
+		\State Compute $Q_{\theta_t}$,$\pi_{\theta_t}$
+		\State $L = \sum_{i} \Pr{(\zeta_i)} \sum_{(s,a) \in \zeta_i} \log{\pi_{\theta_t}(s,a)}$
+		\State $\theta \leftarrow \theta + \lambda_t\nabla{L}$
+		\EndFor
+		\State \textbf{Output:}  $\theta$
+	\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Learning from scarce individual's behavioural data}
+\label{sec:clustering like behaving users}
+%Finally, we show how the problem of learning an individual behaviour model from scarce user behavioural data, a common problem in information systems, can be alleviated by clustering trajectories of like-minded users and then learning a (one per cluster) generalized behavioural model.
+
+As we have shown in the previous section by harnessing behavioural data of an individual, i.e., user-space interaction trajectories, we can learn with IRL the user behavioural model in terms of the user's preferences $\theta$, her reward $r$ and the associated action selection policy $\pi^*$. 
+%%FR Non e' che questo lo hai mostrato bene. Hai descritto MDP, hai detto che con IRL puoi stimare la reward, hai forse detto che con la reward function uno puo' calcolare anche la policy ottima. Secondo me tutto questo e' poco chiaro. Non hai mai mostrato esempi e hai mescolato cose generali a cose specifiche. Secondo me le cose generali su RL e su IRL andrebbero nello stato dell'arte e magari con degli esempi classici per far capire cosa succede in quei casi. Qui dovresti solo focalizzarti sul tuo caso specifico e far capire come queste tecniche generali sono state utilizzate da te.
+
+Generally, in information systems 
+%%FR cosa sono questi "information systems"? Cerca di essere piu' specifico. Tu ti sei occupato di una particolare applicazione nell'ambito del turismo. Parla di quello se no uno come fa a capire a cosa ti riferisci?
+the amount of individual user behavioural data is not large for the majority of the system users. The lack of user's data becomes more evident when it comes to user-space interaction data, for which the available public datasets are not many (and sparse as well) and the only rich datasets are those owned by service providers like Google, Foursquare, and Uber.
+%%FR Io direi le cose in modo diverso, altrimenti sembra che tu abbia sviluppato una tecnica solo perche' non hai accesso ai dati. Devi valorizzare l'idea del clustering piuttosto che descriverla come un ripiego.
+We think that from a RSs perspective, which is the focus of this thesis, using only target user (specific) behavioural data
+%, even a rich set of individual data, 
+for recommendations generation for him is of scarce utility for the user: 
+%%FR in realtà nessun RS, a parte quelli content-based, usa solo i dati del target user per fare raccomandazioni a lui. In CF si usano i dati di una popolazione di utenti.
+the suggested items (e.g., POI-visits) will (probably) be those that the user would choose without the help of the RS. 
+%%FR E' il tipico problema dei CB RSs.
+Moreover, individual behavioural data may present a sub-optimal behaviour. e.g., a user that visits for the first time a city may simply visit the few, more accessible, places that are closer to the city main attractions. Learning a behavioural model from such observations would lead to a biased model. We think that by learning, instead, a behavioural model from observations of more visitors 
+%%FR ma devi dire cosa vuol dire "more" in questo contesto.
+in the city, the resulting learnt behaviour will minimize the impact of sub-optimal behaviours that could influence some of the observed trajectories.
+
+In order to alleviate the problems of learning from scarce user's data and minimizing the impact of suboptimal behaviours present in the data, we propose to group the user-space interaction trajectories in clusters and then to learn a ``general'' user behavioural model common for all the users/trajectories in a cluster.
+
+By applying MLIRL on each cluster of trajectories we therefore learn cluster specific reward functions and behaviour models of the users in each cluster. This is the optimal policy that dictates for each state the best action, e.g., the next POI visit, the users in a cluster should take in order to maximise their reward.
 
 
 \subsection{Applications of IRL methods}.
